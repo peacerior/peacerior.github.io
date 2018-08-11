@@ -27,7 +27,7 @@ var Robot = function () {
 		this.links = [];
 		this.frame = 0;
 		this.dir = 1;
-		this.size = size //* (Math.random() * 0.1);
+		this.size = size * ( Math.random() * 10 );
 		this.color = Math.round( color );
 		this.light = light;
 		// ---- points ----
@@ -234,7 +234,6 @@ var Robot = function () {
 						ctx.save();
 						ctx.translate( link.p0.x + link.size * 0.25, link.p0.y + link.size * 0.25 );
 						ctx.rotate( a );
-						// ctx.drawImage(link.shadow, -link.size * 0.5, -link.size * 0.5, d + link.size, link.size);
 						ctx.restore();
 						// ---- stroke ----
 						ctx.save();
@@ -277,20 +276,6 @@ var Link = function Link( parent, p0, p1, dist, size, light, force ) {
 		ict.moveTo( size * 0.5, size * 0.5 );
 		ict.lineTo( size * 0.5 + dist, size * 0.5 );
 		ict.stroke();
-		// document.getElementById('pointinfo')
-		//     .innerHTML = JSON.stringify(p0) + "<br>" + JSON.stringify(p1)
-		if ( axis ) {
-			// var s = size * 10;
-			// ict.lineCap = "round";
-			// ict.fillStyle = '#fff3' //color//"#fff1";
-			// ict.arc(size, size, 20, 0, 2 * Math.PI)
-			// // ict.arc(size * 0.5, size * 0.5,5,0,2*Math.PI)
-			// // ict.arc(size * 0.5, size * 0.5,3,0,2*Math.PI)
-			// // ict.arc(size * 0.5, size * 0.5,1,0,2*Math.PI)
-			// ict.fill();
-			// // ict.fillRect(size * 0.5 - s, size * 0.5 - s, s * 2, s * 2);
-			// // ict.fillRect(size * 0.5 - s + dist, size * 0.5 - s, s * 2, s * 2);
-		}
 		return image;
 	}
 	this.p0 = p0;
@@ -452,29 +437,11 @@ var img = document.createElement( 'img' );
 img.src = 'js/Earth-PNG-Photos.png'
 var fl = -50,
 	z = 0
-// ctx.translate(canvas.width / 2, 0)
+
 function dancerpointdraw() {
-	// if (Thedancer[0][0].id == 0) {
-	//     z += 0.005
-	// } else {
-	//     z = 0
-	// }
 	var kiki = Thedancer[ 0 ][ 0 ].x // (Math.random() * 0.01)
 	var perspective = fl / ( fl + z ) //'shapepoosition.z'
-	// if (Thedancer.length > 0) {
 	ctx.strokeStyle = 'RGBA(255,255,255,0.1)'
-	// ctx.scale(perspective, perspective)
-	// ctx.drawImage(img, Thedancer[0][8].x - 50, Thedancer[0][8].y - 50, 100, 100);
-	// ctx.drawImage(img, Thedancer[3].points[0].x - 50, Thedancer[3].points[0].y - 50, 100, 100);
-	// ctx.translate(0, 0)
-	// ctx.scale(1.1, 1.1)
-	// ctx.drawImage()
-	// ctx.beginPath();
-	// ctx.arc(Thedancer[0][0].x, Thedancer[0][0].y, 10, 0, 2 * Math.PI);;
-	// ctx.stroke();
-	// ctx.beginPath();
-	// ctx.arc(Thedancer[0][1].x, Thedancer[0][1].y, 10, 0, 2 * Math.PI);;
-	// ctx.stroke();
 	for ( var i = 0; i < Thedancer[ 0 ].length; i++ ) {
 		if ( ( Thedancer[ 0 ][ i ].x ) > canvas.width || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 2 || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 3 || ( Thedancer[ 0 ][ i ].x ) == Math.random() * canvas.width || ( Thedancer[ 0 ][ i ].y ) > canvas.height ) {
 			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10
@@ -483,23 +450,8 @@ function dancerpointdraw() {
 		ctx.beginPath();
 		ctx.arc( Thedancer[ 0 ][ i ].x * perspective, Thedancer[ 0 ][ i ].y * perspective, Math.random() * 3, 0, 2 * Math.PI );
 		ctx.fill();
-		// document.getElementById( 'pointinfo' )
-		// .innerHTML = JSON.stringify( Thedancer[ 0 ].id ) //[1].points[0]) + '<br>' + JSON.stringify(Thedancer[0].points[0])
 	}
 	ctx.beginPath()
-	// for ( var i = 1; i < Thedancer[ 0 ].length; i++ ) {
-	// 	kiki = 1 / kiki //Thedancer[0][i].x * perspective
-	// 	ctx.moveTo( Thedancer[ 0 ][ i ].x * perspective, Thedancer[ 0 ][ i ].y * perspective );
-	// 	ctx.lineTo( Thedancer[ 0 ][ i ].x * perspective, Thedancer[ 0 ][ i ].y * perspective );
-	// 	// ctx.lineTo(Thedancer[0][i].x * perspective, Thedancer[0][i].y * perspective / 3);
-	// 	// ctx.lineTo(Thedancer[0][i].x * perspective, Thedancer[0][i].y * perspective / 4);
-	// 	ctx.quadraticCurveTo( Thedancer[ 0 ][ i ].x * perspective * kiki, 300, Thedancer[ 0 ][ i ].x * perspective, 0 )
-	// 	// ctx.lineTo(Thedancer[0][i].x * perspective, 0);
-	// 	// ctx.lineTo(Thedancer[0][i - 1].x * perspective, Thedancer[0][i - 1].y * perspective);
-	// 	// ctx.lineTo(Thedancer[0][kiki].x * perspective, Thedancer[0][kiki].y * perspective);
-	// }
-	// ctx.strokeStyle = 'RGBA(255,255,255,0.3)'
-	// ctx.stroke();
 	ctx.strokeStyle = 'RGBA(255,255,255,0.9)'
 	ctx.beginPath()
 	ctx.moveTo( Thedancer[ 0 ][ 0 ].x * perspective, Thedancer[ 0 ][ 0 ].y * perspective );
@@ -529,40 +481,22 @@ function run() {
 	requestAnimationFrame( run );
 	ctx.clearRect( 0, 0, canvas.width, canvas.height );
 	ctx.fillStyle = "#eee";
-	// ctx.fillRect(0, 0, canvas.width, canvas.height * 0.15);
-	// ctx.fillRect(0, canvas.height * 0.85, canvas.width, canvas.height * 0.15);
 	var _iteratorNormalCompletion9 = true;
 	var _didIteratorError9 = false;
 	var _iteratorError9 = undefined;
-	// var EXTRA_X = 0,
-	//     EXTRA_Y = 0
-	// ctx.beginPath();
-	// ctx.arc(EXTRA_X, EXTRA_Y, 155, 0, 2 * Math.PI);
-	// ctx.fill();
 	try {
 		for ( var _iterator9 = dancers[ Symbol.iterator ](), _step9; !( _iteratorNormalCompletion9 = ( _step9 = _iterator9.next() )
 				.done ); _iteratorNormalCompletion9 = true ) {
 			var dancer = _step9.value;
 			Thedancer = [ dancer.points ]
-			// for (var i = 0; i < dancers.length; i++) {
 			if ( dancerId < dancers.length ) {
 				dancerId += 1
 			} else {
 				dancerId = 0
 			}
 			Thedancer.id = dancerId //Math.floor(Math.random() * 8)
-			// }
 			dancerpointdraw()
 			dancer.update();
-			// dancer.draw();
-			// ctx.moveTo(dancer[0].x, dancer[0].x);
-			// ctx.fillRect(dancer.points[0].x, dancer.points[0].y, 100, 100);;
-			// ctx.arc(dancer.points[1].x, dancer.points[1].y, 5, 0, 2 * Math.PI);;
-			// ctx.arc(dancer.points[2].x, dancer.points[2].y, 5, 0, 2 * Math.PI);;
-			// ctx.arc(dancer.points[3].x, dancer.points[3].y, 5, 0, 2 * Math.PI);;
-			// EXTRA_X = dancer.points[0].x
-			// EXTRA_Y = dancer.points[0].y
-			// .arc(size * 0.5, size * 0.5,5,0,2*Math.PI)
 		}
 	} catch ( err ) {
 		_didIteratorError9 = true;
@@ -657,6 +591,4 @@ for ( var i = 0; i < 15; i++ ) {
 	console.log( vpos );
 	dancers.push( new Robot( i * 360 / 7, 100, 3, ( i + 1 ) * canvas.width / 16, canvas.height * ground - 200 + vpos, struct ) );
 }
-// document.getElementById('pointinfo')
-// .innerHTML = Robot.points
 run();
