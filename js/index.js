@@ -588,7 +588,6 @@ var dancers = [];
 for ( var i = 0; i < 15; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 150
-	console.log( vpos );
 	dancers.push( new Robot( i * 360 / 7, 100, 3, ( i + 1 ) * canvas.width / 16, canvas.height * ground - 200 + vpos, struct ) );
 }
 run();
