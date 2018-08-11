@@ -6,6 +6,7 @@
                 text-align: center;
                 padding-top: 20px;
                 background-color: black;
+                font-family: "Courier New", Courier;
             }
             .video-preview {
                 display: inline-block;
@@ -29,11 +30,19 @@
     </head>
 
     <body>
-        <div>
 
-            <a class="video-preview" data-frames="20" data-source="https://peacerior.github.io/img/splash_preview.jpg"></a>
+        <a class="video-preview" data-frames="20" data-source="https://peacerior.github.io/img/splash_preview.jpg"></a>
+        <div style="transform: rotate(-2deg);">
+            <a style="background-color:white;">
+                I am working on something,
+            </a>
         </div>
-
+        <div style="transform: rotate(-1deg);">
+            <a style="background-color:white;">
+                but we can watch the paint dry for now.
+            </a>
+        </div>
+        div.a { transform: rotate(20deg); }
         <script>
             (function ($) {
                 $.fn.videoPreview = function (options) {
