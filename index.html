@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                text-align: center;
+                padding-top: 20px;
+                background-color: black;
+            }
+            div {
+                position: fixed;
+                bottom: 0;
+                /*
+display: inline-block;*/
+            }
+            .video-preview {
+                display: inline-block;
+                position: relative;
+                background: #ddd;
+                overflow: hidden;
+                /* This is temporary width and height, these'll be overriden when the source img is loaded.*/
+                /* If you already know size of a preview frame you can hardcode it here. */
+                width: 1920px;
+                height: 1080px;
+                -ms-transform: scale(0.5,0.5);
+                /* IE 9 */
+                -webkit-transform: scale(0.5,0.5);
+                /* Safari */
+                transform: scale(0.5,0.5);
+                /* Standard syntax */
+            }
+        </style>
+
+        <script type="text/javascript" src="http://static.tumblr.com/vr9xgox/sBgmmjhyw/jquery-1.9.1.min.js"></script>
+    </head>
+
+    <body>
+        <div>
+
+            <a class="video-preview" data-frames="20" data-source="img\splash_preview.jpg"></a>
+        </div>
+
+        <script>
+            (function ($) {
+                $.fn.videoPreview = function (options) {
+                    return this.each(function () {
+                        var elm = $(this);
+                        var frames = parseFloat(elm.data('frames'));
+
+                        var img = $('<img/>', {'src': elm.data('source')}).hide().css({'position': 'absolute', 'cursor': 'pointer'}).appendTo(elm);
+                        var slider = $('<div/>').hide().css({
+                            'width': '0px',
+                            'height': '100%',
+                            'background': '#ddd',
+                            'position': 'absolute',
+                            'z-index': '1',
+                            'top': '0',
+                            'opacity': 0.6,
+                            'cursor': 'crosshair'
+                        }).appendTo(elm);
+
+                        var width;
+
+                        function defaultPos() {
+                            img.css('left', -width * frames / 4);
+                        }
+
+                        img.load(function () { // we need to know video's full width
+                            $(this).show();
+                            width = this.width / frames;
+                            elm.css('width', width);
+                            defaultPos();
+                        });
+                        elm.mousemove(function (e) {
+                            var left = e.clientX - elm.position().left; // position inside the wrapper
+                            slider.show().css('left', left - 1); // -1 because it's 2px width
+                            img.css('left', -Math.floor((left / width) * frames) * width);
+                        }).mouseout(function (e) {
+                            slider.hide();
+                            defaultPos();
+                        });
+
+                    });
+                };
+            })(jQuery);
+
+            $('.video-preview').videoPreview();
+        </script>
+    </body>
+</html>
