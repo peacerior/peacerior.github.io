@@ -31,7 +31,7 @@
     <body>
         <div>
 
-            <a class="video-preview" data-frames="20" data-source="img\splash_preview.jpg"></a>
+            <a class="video-preview" data-frames="20" data-source="img/splash_preview.jpg"></a>
         </div>
 
         <script>
@@ -41,7 +41,7 @@
                         var elm = $(this);
                         var frames = parseFloat(elm.data('frames'));
 
-                        var img = $('<img/>', {'src': elm.data('source')}).hide().css({'position': 'absolute', 'cursor': 'pointer'}).appendTo(elm);
+                        var img = $('<img/>', {'src': elm.data('source')}).hide().css({'position': 'absolute', 'cursor': 'crosshair'}).appendTo(elm);
                         var slider = $('<div/>').hide().css({
                             'width': '0px',
                             'height': '100%',
