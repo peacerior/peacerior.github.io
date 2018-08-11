@@ -1,99 +1,61 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            body {
-                text-align: center;
-                padding-top: 20px;
-                background-color: black;
-                font-family: "Courier New", Courier;
-            }
-            .video-preview {
-                display: inline-block;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                background: #000;
-                overflow: hidden;
-                /* This is temporary width and height, these'll be overriden when the source img is loaded.*/
-                /* If you already know size of a preview frame you can hardcode it here. */
-                width: 1920px;
-                height: 1080px;
-                -ms-transform: scale(1,1);
-                /* IE 9 */
-                -webkit-transform: scale(1,1);
-                /* Safari */
-                transform: scale(1,1);
-                /* Standard syntax */
-            }
-        </style>
+<html lang="en">
 
-        <script src="jq/jquery.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>The Last Experience</title>
+
+
+
+        <link rel="stylesheet" href="css/style.css">
+
+
     </head>
 
     <body>
+        <p id='pointinfo'>
+            tito
+        </p>
+        <!-- <img src="js/Image002.png" id="lamp" width="0" height="0"> -->
+        <!--
 
-        <div style="transform: rotate(-2deg);">
-            <a style="background-color:white;">
-                I am working on something,
-            </a>
-        </div>
-        <div style="transform: rotate(-1deg);">
-            <a style="background-color:white;">
-                and this paint dries so nicely!
-            </a>
-        </div>
-        <div style="transform: rotate(0deg);">
-            ///<a style="background-color:white;">
-                Let's stay in touch.
-            </a>
-        </div>
-        <a class="video-preview" data-frames="20" data-source="https://peacerior.github.io/img/splash_preview.jpg"></a>
-        <script>
-            (function ($) {
-                $.fn.videoPreview = function (options) {
-                    return this.each(function () {
-                        var elm = $(this);
-                        var frames = parseFloat(elm.data('frames'));
+                  ,--.    ,--.
+                 ((O ))--((O ))
+               ,'_`--'____`--'_`.
+              _:  ____________  :_
+             | | ||::::::::::|| | |
+             | | ||::::::::::|| | |
+             | | ||::::::::::|| | |
+             |_| |/__________\| |_|
+               |________________|
+            __..-'            `-..__
+         .-| : .----------------. : |-.
+       ,\ || | |\______________/| | || /.
+      /`.\:| | ||  __  __  __  || | |;/,'\
+     :`-._\;.| || '--''--''--' || |,:/_.-':
+     |    :  | || .----------. || |  :    |
+     |    |  | || '----SSt---' || |  |    |
+     |    |  | ||   _   _   _  || |  |    |
+     :,--.;  | ||  (_) (_) (_) || |  :,--.;
+     (`-'|)  | ||______________|| |  (|`-')
+      `--'   | |/______________\| |   `--'
+             |____________________|
+              `.________________,'
+               (_______)(_______)
+               (_______)(_______)
+               (_______)(_______)
+               (_______)(_______)
+              |        ||        |
+              '--------''--------'
+-->
 
-                        var img = $('<img/>', {'src': elm.data('source')}).hide().css({'position': 'absolute', 'cursor': 'crosshair'}).appendTo(elm);
-                        var slider = $('<div/>').hide().css({
-                            'width': '0px',
-                            'height': '100%',
-                            'background': '#ddd',
-                            'position': 'absolute',
-                            'z-index': '1',
-                            'top': '0',
-                            'opacity': 0.6,
-                            'cursor': 'crosshair'
-                        }).appendTo(elm);
 
-                        var width;
 
-                        function defaultPos() {
-                            img.css('left', -width * frames / 4);
-                        }
+        <script src="js/index.js"></script>
 
-                        img.load(function () { // we need to know video's full width
-                            $(this).show();
-                            width = this.width / frames;
-                            elm.css('width', width);
-                            defaultPos();
-                        });
-                        elm.mousemove(function (e) {
-                            var left = e.clientX - elm.position().left; // position inside the wrapper
-                            slider.show().css('left', left - 1); // -1 because it's 2px width
-                            img.css('left', -Math.floor((left / width) * frames) * width);
-                        }).mouseout(function (e) {
-                            slider.hide();
-                            defaultPos();
-                        });
 
-                    });
-                };
-            })(jQuery);
 
-            $('.video-preview').videoPreview();
-        </script>
+
     </body>
+
 </html>
