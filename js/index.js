@@ -483,8 +483,8 @@ function dancerpointdraw() {
 		ctx.beginPath();
 		ctx.arc( Thedancer[ 0 ][ i ].x * perspective, Thedancer[ 0 ][ i ].y * perspective, Math.random() * 3, 0, 2 * Math.PI );
 		ctx.fill();
-		document.getElementById( 'pointinfo' )
-			.innerHTML = JSON.stringify( Thedancer[ 0 ].id ) //[1].points[0]) + '<br>' + JSON.stringify(Thedancer[0].points[0])
+		// document.getElementById( 'pointinfo' )
+		// .innerHTML = JSON.stringify( Thedancer[ 0 ].id ) //[1].points[0]) + '<br>' + JSON.stringify(Thedancer[0].points[0])
 	}
 	ctx.beginPath()
 	// for ( var i = 1; i < Thedancer[ 0 ].length; i++ ) {
@@ -653,7 +653,7 @@ var struct = {
 var dancers = [];
 for ( var i = 0; i < 15; i++ ) {
 	//Robot(color, light, size, x, y, struct)
-	var vpos = Math.random() * 45
+	var vpos = Math.random() * 150
 	console.log( vpos );
 	dancers.push( new Robot( i * 360 / 7, 100, 3, ( i + 1 ) * canvas.width / 16, canvas.height * ground - 200 + vpos, struct ) );
 }
