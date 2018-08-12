@@ -528,7 +528,11 @@ function run() {
 			a = i - 10
 		} else {
 			a = i + 1
+		};
+		if ( a > 10 ) {
+			a = 1
 		}
+		// console.log( 'lodImg: ' + a );
 		img.src = 'js/' + a + '.png';
 		ctx.drawImage( img, dancers[ i ].points[ 0 ].x - img.width / 2, dancers[ i ].points[ 0 ].y - img.height / 2 )
 
@@ -607,10 +611,12 @@ var struct = {
 };
 // ---- instanciate robots ----
 var dancers = [];
-for ( var i = 0; i < 15; i++ ) {
+console.log( canvas.width );
+var NoOfDancers = Math.floor( canvas.width / 50 )
+for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / 18, canvas.height * ground - 200 + vpos, struct ) );
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
