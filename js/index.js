@@ -607,10 +607,10 @@ var struct = {
 };
 // ---- instanciate robots ----
 var dancers = [];
-for ( var i = 0; i < 25; i++ ) {
+for ( var i = 0; i < 15; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / 26, canvas.height * ground - 200 + vpos, struct ) );
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / 18, canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
