@@ -432,47 +432,56 @@ var pointer = new Pointer( canvas );
 var dancerDrag = null;
 var pointDrag = null;
 var Thedancer;
+
 var img = document.createElement( 'img' );
-// img.src = 'js/Image002.png'
-img.src = 'js/Earth-PNG-Photos.png'
+var imagelooper = [];
+for ( var i = 1; i < 10; i++ ) {
+	imagelooper[ i ] = new Image();
+	imagelooper[ i ].src = 'js/' + i + '.png';
+}
+var psize = ( Math.random() * 50 ) + 100
+
+// function planets( id, x, y ) {
+// 	ctx.font = "30px Arial";
+// 	ctx.fillText( id, x, y );
+//
+// }
+
+
+
 var fl = -50,
-	z = 0
+	z = 0;
 
 function dancerpointdraw() {
-	var kiki = Thedancer[ 0 ][ 0 ].x // (Math.random() * 0.01)
-	var perspective = fl / ( fl + z ) //'shapepoosition.z'
-	ctx.strokeStyle = 'RGBA(255,255,255,0.1)'
+	ctx.strokeStyle = 'RGBA(255,255,255,0.7)'
 	for ( var i = 0; i < Thedancer[ 0 ].length; i++ ) {
 		if ( ( Thedancer[ 0 ][ i ].x ) > canvas.width || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 2 || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 3 || ( Thedancer[ 0 ][ i ].x ) == Math.random() * canvas.width || ( Thedancer[ 0 ][ i ].y ) > canvas.height ) {
 			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10
 			Thedancer[ 0 ][ i ].y = Thedancer[ 0 ][ i ].y - 30
 		}
 		ctx.beginPath();
-		ctx.arc( Thedancer[ 0 ][ i ].x * perspective, Thedancer[ 0 ][ i ].y * perspective, Math.random() * 3, 0, 2 * Math.PI );
+		ctx.arc( Thedancer[ 0 ][ i ].x, Thedancer[ 0 ][ i ].y, ( Math.random() * 2 ) + 2, 0, 2 * Math.PI );
 		ctx.fill();
+
 	}
 	ctx.beginPath()
-	ctx.strokeStyle = 'RGBA(255,255,255,0.9)'
-	ctx.beginPath()
-	ctx.moveTo( Thedancer[ 0 ][ 0 ].x * perspective, Thedancer[ 0 ][ 0 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 1 ].x * perspective, Thedancer[ 0 ][ 1 ].y * perspective );
-	ctx.moveTo( Thedancer[ 0 ][ 1 ].x * perspective, Thedancer[ 0 ][ 1 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 2 ].x * perspective, Thedancer[ 0 ][ 2 ].y * perspective );
-	ctx.moveTo( Thedancer[ 0 ][ 2 ].x * perspective, Thedancer[ 0 ][ 2 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 5 ].x * perspective, Thedancer[ 0 ][ 5 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 9 ].x * perspective, Thedancer[ 0 ][ 9 ].y * perspective );
-	ctx.moveTo( Thedancer[ 0 ][ 2 ].x * perspective, Thedancer[ 0 ][ 2 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 6 ].x * perspective, Thedancer[ 0 ][ 6 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 10 ].x * perspective, Thedancer[ 0 ][ 10 ].y * perspective );
-	ctx.moveTo( Thedancer[ 0 ][ 1 ].x * perspective, Thedancer[ 0 ][ 1 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 3 ].x * perspective, Thedancer[ 0 ][ 3 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 7 ].x * perspective, Thedancer[ 0 ][ 7 ].y * perspective );
-	ctx.moveTo( Thedancer[ 0 ][ 1 ].x * perspective, Thedancer[ 0 ][ 1 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 4 ].x * perspective, Thedancer[ 0 ][ 4 ].y * perspective );
-	ctx.lineTo( Thedancer[ 0 ][ 8 ].x * perspective, Thedancer[ 0 ][ 8 ].y * perspective );
+	ctx.moveTo( Thedancer[ 0 ][ 0 ].x, Thedancer[ 0 ][ 0 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 1 ].x, Thedancer[ 0 ][ 1 ].y );
+	ctx.moveTo( Thedancer[ 0 ][ 1 ].x, Thedancer[ 0 ][ 1 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 2 ].x, Thedancer[ 0 ][ 2 ].y );
+	ctx.moveTo( Thedancer[ 0 ][ 2 ].x, Thedancer[ 0 ][ 2 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 5 ].x, Thedancer[ 0 ][ 5 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 9 ].x, Thedancer[ 0 ][ 9 ].y );
+	ctx.moveTo( Thedancer[ 0 ][ 2 ].x, Thedancer[ 0 ][ 2 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 6 ].x, Thedancer[ 0 ][ 6 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 10 ].x, Thedancer[ 0 ][ 10 ].y );
+	ctx.moveTo( Thedancer[ 0 ][ 1 ].x, Thedancer[ 0 ][ 1 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 3 ].x, Thedancer[ 0 ][ 3 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 7 ].x, Thedancer[ 0 ][ 7 ].y );
+	ctx.moveTo( Thedancer[ 0 ][ 1 ].x, Thedancer[ 0 ][ 1 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 4 ].x, Thedancer[ 0 ][ 4 ].y );
+	ctx.lineTo( Thedancer[ 0 ][ 8 ].x, Thedancer[ 0 ][ 8 ].y );
 	ctx.stroke();
-	ctx.drawImage( img, Thedancer[ 0 ][ 0 ].x * perspective - 25 * perspective, Thedancer[ 0 ][ 0 ].y * perspective - 25 * perspective, 50 * perspective, 50 * perspective );
-	// }
 }
 // ---- main loop ----
 var dancerId = 0
@@ -496,6 +505,7 @@ function run() {
 			}
 			Thedancer.id = dancerId //Math.floor(Math.random() * 8)
 			dancerpointdraw()
+
 			dancer.update();
 		}
 	} catch ( err ) {
@@ -512,7 +522,19 @@ function run() {
 			}
 		}
 	}
+	for ( var i = 0; i < dancers.length; i++ ) {
+		var a
+		if ( i > 9 ) {
+			a = i - 10
+		} else {
+			a = i + 1
+		}
+		img.src = 'js/' + a + '.png';
+		ctx.drawImage( img, dancers[ i ].points[ 0 ].x - img.width / 2, dancers[ i ].points[ 0 ].y - img.height / 2 )
+
+	}
 }
+
 // ---- robot structure ----
 var struct = {
 	points: [
@@ -581,13 +603,14 @@ var struct = {
         [ 2, 6, 32, 1.5 ],
         [ 4, 8, 12, 1.5 ],
         [ 1, 4, 24, 1.5 ]
-    ]
+    ],
 };
 // ---- instanciate robots ----
 var dancers = [];
-for ( var i = 0; i < 15; i++ ) {
+for ( var i = 0; i < 25; i++ ) {
 	//Robot(color, light, size, x, y, struct)
-	var vpos = Math.random() * 150
-	dancers.push( new Robot( i * 360 / 7, 100, 3, ( i + 1 ) * canvas.width / 16, canvas.height * ground - 200 + vpos, struct ) );
+	var vpos = Math.random() * 1;
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / 26, canvas.height * ground - 200 + vpos, struct ) );
 }
+
 run();
