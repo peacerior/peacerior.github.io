@@ -27,7 +27,7 @@ var Robot = function () {
 		this.links = [];
 		this.frame = 0;
 		this.dir = 1;
-		this.size = size * ( Math.random() * 10 );
+		this.size = size // * ( Math.random() * 10 );
 		this.color = Math.round( color );
 		this.light = light;
 		// ---- points ----
@@ -425,7 +425,7 @@ var Pointer = function () {
 	return Pointer;
 }();
 // ---- init ----
-var ground = 1.0;
+var ground = 0;
 var canvas = new Canvas();
 var ctx = canvas.ctx;
 var pointer = new Pointer( canvas );
@@ -616,7 +616,7 @@ var NoOfDancers = Math.floor( canvas.width / 50 )
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 4 ) + 1, ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
