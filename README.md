@@ -1,3 +1,3 @@
 # peacerior.github.io
 
-Imaginary tools splash screen with jq and ffmpeg filmstrip
+Imaginary tools splash screen, wip with AI dancing bodies.
