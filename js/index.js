@@ -434,6 +434,8 @@ var pointDrag = null;
 var Thedancer;
 
 var img = document.createElement( 'img' );
+var bgr = document.createElement( 'img' );
+bgr.src = 'js/darkrift-orig_full.jpg'
 var imagelooper = [];
 for ( var i = 1; i < 10; i++ ) {
 	imagelooper[ i ] = new Image();
@@ -490,6 +492,8 @@ function run() {
 	requestAnimationFrame( run );
 	ctx.clearRect( 0, 0, canvas.width, canvas.height );
 	ctx.fillStyle = "#eee";
+	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height )
+	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height, 0, 0, ( canvas.width / bgr.width ) * canvas.width, ( canvas.height / bgr.height ) * canvas.height );
 	var _iteratorNormalCompletion9 = true;
 	var _didIteratorError9 = false;
 	var _iteratorError9 = undefined;
@@ -612,7 +616,7 @@ var struct = {
 // ---- instanciate robots ----
 var dancers = [];
 console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 50 )
+var NoOfDancers = Math.floor( canvas.width / 150 )
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
