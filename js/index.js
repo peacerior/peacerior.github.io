@@ -215,7 +215,7 @@ var Robot = function () {
 				}
 			}
 		}
-    }, {
+	}, {
 		key: 'draw',
 		value: function draw() {
 			var _iteratorNormalCompletion6 = true;
@@ -258,7 +258,7 @@ var Robot = function () {
 				}
 			}
 		}
-    } ] );
+	} ] );
 	return Robot;
 }();
 var Link = function Link( parent, p0, p1, dist, size, light, force ) {
@@ -318,7 +318,7 @@ var Canvas = function () {
 			this.height = this.elem.height = this.elem.offsetHeight;
 			ground = this.height > 500 ? 0.85 : 1.0;
 		}
-    } ] );
+	} ] );
 	return Canvas;
 }();
 var Pointer = function () {
@@ -404,12 +404,12 @@ var Pointer = function () {
 				}
 			}
 		}
-    }, {
+	}, {
 		key: 'up',
 		value: function up( e ) {
 			dancerDrag = null;
 		}
-    }, {
+	}, {
 		key: 'move',
 		value: function move( e ) {
 			var touchMode = e.targetTouches,
@@ -421,7 +421,7 @@ var Pointer = function () {
 			this.x = pointer.clientX;
 			this.y = pointer.clientY;
 		}
-    } ] );
+	} ] );
 	return Pointer;
 }();
 // ---- init ----
@@ -433,9 +433,9 @@ var dancerDrag = null;
 var pointDrag = null;
 var Thedancer;
 
-var img = document.createElement( 'img' );
-var bgr = document.createElement( 'img' );
-bgr.src = 'js/darkrift-orig_full.jpg'
+// var img = document.createElement( 'img' );
+// var bgr = document.createElement( 'img' );
+// bgr.src = 'js/darkrift-orig_full.jpg'
 var imagelooper = [];
 for ( var i = 1; i < 10; i++ ) {
 	imagelooper[ i ] = new Image();
@@ -526,92 +526,92 @@ function run() {
 			}
 		}
 	}
-	for ( var i = 0; i < dancers.length; i++ ) {
-		var a
-		if ( i > 9 ) {
-			a = i - 10
-		} else {
-			a = i + 1
-		};
-		if ( a > 10 ) {
-			a = 1
-		}
-		// console.log( 'lodImg: ' + a );
-		img.src = 'js/' + a + '.png';
-		ctx.drawImage( img, dancers[ i ].points[ 0 ].x - img.width / 2, dancers[ i ].points[ 0 ].y - img.height / 2 )
+	// for ( var i = 0; i < dancers.length; i++ ) {
+	// 	var a
+	// 	if ( i > 9 ) {
+	// 		a = i - 10
+	// 	} else {
+	// 		a = i + 1
+	// 	};
+	// 	if ( a > 10 ) {
+	// 		a = 1
+	// 	}
+	// 	// console.log( 'lodImg: ' + a );
+	// 	img.src = 'js/' + a + '.png';
+	// 	ctx.drawImage( img, dancers[ i ].points[ 0 ].x - img.width / 2, dancers[ i ].points[ 0 ].y - img.height / 2 )
 
-	}
+	// }
 }
 
 // ---- robot structure ----
 var struct = {
 	points: [
-        [ 0, -4, function ( s, d ) {
+		[ 0, -4, function ( s, d ) {
 			this.y -= 0.06 * s;
-        } ],
-        [ 0, -16, function ( s, d ) {
+		} ],
+		[ 0, -16, function ( s, d ) {
 			this.y -= 0.02 * s * d;
-        } ],
-        [ 0, 12, function ( s, d ) {
+		} ],
+		[ 0, 12, function ( s, d ) {
 			this.y += 0.02 * s * d;
-        } ],
-        [ -12, 0 ],
-        [ 12, 0 ],
-        [ -3, 34, function ( s, d ) {
+		} ],
+		[ -12, 0 ],
+		[ 12, 0 ],
+		[ -3, 34, function ( s, d ) {
 			if ( d > 0 ) {
 				this.x += 0.01 * s;
 				this.y -= 0.015 * s;
 			} else {
 				this.y += 0.02 * s;
 			}
-        } ],
-        [ 3, 34, function ( s, d ) {
+		} ],
+		[ 3, 34, function ( s, d ) {
 			if ( d > 0 ) {
 				this.y += 0.02 * s;
 			} else {
 				this.x -= 0.01 * s;
 				this.y -= 0.015 * s;
 			}
-        } ],
-        [ -28, 0, function ( s, d ) {
+		} ],
+		[ -28, 0, function ( s, d ) {
 			this.x += this.vx * 0.035;
 			this.y -= 0.001 * s;
-        } ],
-        [ 28, 0, function ( s, d ) {
+		} ],
+		[ 28, 0, function ( s, d ) {
 			this.x += this.vx * 0.035;
 			this.y -= 0.001 * s;
-        } ],
-        [ -3, 64, function ( s, d ) {
+		} ],
+		[ -3, 64, function ( s, d ) {
 			this.y += 0.02 * s;
 			if ( d > 0 ) {
 				this.y -= 0.01 * s;
 			} else {
 				this.y += 0.05 * s;
 			}
-        } ],
-        [ 3, 64, function ( s, d ) {
+		} ],
+		[ 3, 64, function ( s, d ) {
 			this.y += 0.02 * s;
 			if ( d > 0 ) {
 				this.y += 0.05 * s;
 			} else {
 				this.y -= 0.01 * s;
 			}
-        } ],
-        [ 0, -0.1 ]
-    ],
+		} ],
+		[ 0, -0.1 ]
+	],
 	links: [
-        [ 3, 7, 12, 0.5 ],
-        [ 1, 3, 24, 0.9 ],
-        [ 1, 0, 18, 0.5 ],
-        [ 0, 11, 60, 0.8 ],
-        [ 5, 9, 16, 0.5 ],
-        [ 2, 5, 32, 0.5 ],
-        [ 1, 2, 50, 1 ],
-        [ 6, 10, 16, 1.5 ],
-        [ 2, 6, 32, 1.5 ],
-        [ 4, 8, 12, 1.5 ],
-        [ 1, 4, 24, 1.5 ]
-    ],
+		[ 3, 7, 12, 0.5 ],
+		[ 1, 3, 24, 0.9 ],
+		[ 1, 0, 18, 0.5 ],
+		[ 0, 11, 60, 0.8 ],
+		[ 5, 9, 16, 0.5 ],
+		[ 2, 5, 32, 0.5 ],
+		[ 1, 2, 50, 1 ],
+		[ 6, 10, 16, 1.5 ],
+		[ 2, 6, 32, 1.5 ],
+		[ 4, 8, 12, 1.5 ],
+		[ 1, 4, 24, 1.5 ]
+	],
 };
 // ---- instanciate robots ----
 var dancers = [];

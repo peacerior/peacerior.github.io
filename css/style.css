@@ -20,17 +20,37 @@ canvas {
 	height: 100%;
 	background: #0000;
 }
+
 p {
-    color: green;
+	color: green;
 }
+
 div {
 	position: absolute;
 	margin: 50px;
 	z-index: 100;
 
 }
-img{
-	position:absolute;
+
+img {
+	position: absolute;
 	height: 100%;
-	z-index:-10000;
+	z-index: -10000;
+}
+
+a:link,
+a:visited {
+	background-color: #ffffff;
+	color: black;
+	padding: 14px 25px;
+	text-align: center;
+	text-decoration: none;
+
+	/* display: inline-block; */
+}
+
+
+a:hover,
+a:active {
+	background-color: red;
 }
