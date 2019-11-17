@@ -660,7 +660,7 @@ var struct = {
 // ---- instanciate robots ----
 var dancers = [];
 // console.log( canvas.width );
-var NoOfDancers = 2; /* Math.floor( canvas.width / 100 ); */
+var NoOfDancers = Math.floor( canvas.width / 100 );
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
