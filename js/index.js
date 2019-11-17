@@ -490,8 +490,8 @@ var dancerId = 0
 
 function run() {
 	requestAnimationFrame( run );
-	ctx.clearRect( 0, 0, canvas.width, canvas.height );
-	ctx.fillStyle = "#eee";
+	ctx.fillStyle = "rgba(0,0,0,0.1)";
+	ctx.fillRect( 0, 0, canvas.width, canvas.height );
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height )
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height, 0, 0, ( canvas.width / bgr.width ) * canvas.width, ( canvas.height / bgr.height ) * canvas.height );
 	var _iteratorNormalCompletion9 = true;
@@ -614,18 +614,25 @@ var struct = {
 	],
 };
 // ---- instanciate robots ----
-var dancers = [];
-<<<<<<< HEAD
+var dancers = []; <<
+<<
+<<
+<
+HEAD
 // console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 100 );
-=======
+var NoOfDancers = Math.floor( canvas.width / 100 ); ===
+===
+=
 console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 150 )
->>>>>>> parent of c689654... update for progress
+var NoOfDancers = Math.floor( canvas.width / 150 ) >>>
+	>>>
+	>
+	parent of c689654...update
+for progress
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
-	var vpos = Math.random() * 1;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
+	var vpos = /* Math.random() * */ 50;
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, canvas.width / 2 /* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */ , canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
