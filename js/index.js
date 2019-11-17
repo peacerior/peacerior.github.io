@@ -20,6 +20,8 @@ function _classCallCheck( instance, Constructor ) {
 		throw new TypeError( "Cannot call a class as a function" );
 	}
 }
+var stopCounterForConsole = 0;
+
 var Robot = function () {
 	function Robot( color, light, size, x, y, struct ) {
 		_classCallCheck( this, Robot );
@@ -84,12 +86,17 @@ var Robot = function () {
 				}
 			}
 		}
+		console.log( 'caled in robot!' );
+
 	}
 	_createClass( Robot, [ {
 		key: 'update',
 		value: function update() {
+
 			// ---- beat ----
 			if ( ++this.frame % 20 === 0 ) this.dir = -this.dir;
+			// console.log( this.dir );
+			this.size++;
 			// ---- create giants ----
 			if ( dancerDrag && this === dancerDrag && this.size < 16 && this.frame > 600 ) {
 				dancerDrag = null;
@@ -106,11 +113,23 @@ var Robot = function () {
 				for ( var _iterator3 = this.links[ Symbol.iterator ](), _step3; !( _iteratorNormalCompletion3 = ( _step3 = _iterator3.next() )
 						.done ); _iteratorNormalCompletion3 = true ) {
 					var link = _step3.value;
+					// if ( stopCounterForConsole + 1 < 5 ) {
+					// 	console.log( link );
+					// 	stopCounterForConsole++;
+					// }
+
 					var p0 = link.p0;
 					var p1 = link.p1;
 					var dx = p0.x - p1.x;
 					var dy = p0.y - p1.y;
 					var dist = Math.sqrt( dx * dx + dy * dy );
+					// dist++;
+					// dist += 1 / stopCounterForConsole;
+					// stopCounterForConsole++;
+					// if ( stopCounterForConsole + 1 < 15 ) {
+					// 	console.log( 'link 130', link );
+					// 	stopCounterForConsole++;
+					// }
 					if ( dist ) {
 						var tw = p0.w + p1.w;
 						var r1 = p1.w / tw;
@@ -218,6 +237,8 @@ var Robot = function () {
 	}, {
 		key: 'draw',
 		value: function draw() {
+			console.log( 'drawn in draw!' );
+
 			var _iteratorNormalCompletion6 = true;
 			var _didIteratorError6 = false;
 			var _iteratorError6 = undefined;
@@ -236,10 +257,11 @@ var Robot = function () {
 						ctx.rotate( a );
 						ctx.restore();
 						// ---- stroke ----
+
 						ctx.save();
 						ctx.translate( link.p0.x, link.p0.y );
 						ctx.rotate( a );
-						ctx.drawImage( link.image, -link.size * 0.5, -link.size * 0.5, d + link.size, link.size );
+						// ctx.drawImage( link.image, -link.size * 0.5, -link.size * 0.5, d + link.size, link.size );
 						ctx.restore();
 					}
 				}
@@ -263,7 +285,14 @@ var Robot = function () {
 }();
 var Link = function Link( parent, p0, p1, dist, size, light, force ) {
 	_classCallCheck( this, Link );
+	console.log( 'link called!' );
+
 	// ---- cache strokes ----
+	// if ( stopCounterForConsole + 1 < 5 ) {
+	// 	console.log( 'parent', parent, 'size', size );
+	// 	stopCounterForConsole++;
+	// }
+
 	function stroke( color, axis ) {
 		var image = document.createElement( 'canvas' );
 		image.width = dist + size;
@@ -281,7 +310,7 @@ var Link = function Link( parent, p0, p1, dist, size, light, force ) {
 	this.p0 = p0;
 	this.p1 = p1;
 	this.distance = dist;
-	this.size = size;
+	this.size = size * 0.01;
 	this.light = light || 0.0;
 	this.force = ( force || 0.5 );
 	this.image = stroke( "hsl(" + parent.color + " ,100%, " + parent.light * this.light + "%)", true );
@@ -289,6 +318,8 @@ var Link = function Link( parent, p0, p1, dist, size, light, force ) {
 };
 var Point = function Point( id, x, y, fn, w ) {
 	_classCallCheck( this, Point );
+	console.log( 'point called!' );
+
 	this.id = id;
 	this.x = x;
 	this.y = y;
@@ -454,15 +485,22 @@ var psize = ( Math.random() * 50 ) + 100
 var fl = -50,
 	z = 0;
 
-function dancerpointdraw() {
-	ctx.strokeStyle = 'RGBA(255,255,255,0.7)'
+function dancerPointDraw() {
+	ctx.strokeStyle = 'RGBA(255,255,255,' + Math.random() * 0.1 + ")";
+	ctx.lineWidth = 3;
+	ctx.lineCap = "round";
+	ctx.fillStyle = "rgba(255,255,255,0.9)";
+	// console.log( Thedancer );
+
 	for ( var i = 0; i < Thedancer[ 0 ].length; i++ ) {
 		if ( ( Thedancer[ 0 ][ i ].x ) > canvas.width || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 2 || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 3 || ( Thedancer[ 0 ][ i ].x ) == Math.random() * canvas.width || ( Thedancer[ 0 ][ i ].y ) > canvas.height ) {
-			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10
-			Thedancer[ 0 ][ i ].y = Thedancer[ 0 ][ i ].y - 30
+			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10;
+			Thedancer[ 0 ][ i ].y = Thedancer[ 0 ][ i ].y - 30;
 		}
+		// Thedancer[ 0 ][ i ].x = ( Thedancer[ 0 ][ i ].x - canvas.width / 2 ) * 0.999;
+		// Thedancer[ 0 ][ i ].y = Thedancer[ 0 ][ i ].y- * 0.999;
 		ctx.beginPath();
-		ctx.arc( Thedancer[ 0 ][ i ].x, Thedancer[ 0 ][ i ].y, ( Math.random() * 2 ) + 2, 0, 2 * Math.PI );
+		ctx.arc( Thedancer[ 0 ][ i ].x, Thedancer[ 0 ][ i ].y, ( Math.random() * 2 ), 0, 2 * Math.PI );
 		ctx.fill();
 
 	}
@@ -486,12 +524,16 @@ function dancerpointdraw() {
 	ctx.stroke();
 }
 // ---- main loop ----
-var dancerId = 0
+var dancerId = 0;
 
 function run() {
 	requestAnimationFrame( run );
-	ctx.clearRect( 0, 0, canvas.width, canvas.height );
-	ctx.fillStyle = "#eee";
+	// ctx.globalAlpha = 0.1;
+	// ctx.clearRect( 0, 0, canvas.width, canvas.height );
+	// ctx.globalAlpha = 1;
+	ctx.fillStyle = 'RGBA(0,0,0,' + Math.random() * 0.01 + ')';
+	// ctx.fillStyle = 'RGBA(0,0,0,' + Math.random() * 0.05 + ")";
+	ctx.fillRect( 0, 0, canvas.width, canvas.height );
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height )
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height, 0, 0, ( canvas.width / bgr.width ) * canvas.width, ( canvas.height / bgr.height ) * canvas.height );
 	var _iteratorNormalCompletion9 = true;
@@ -501,15 +543,17 @@ function run() {
 		for ( var _iterator9 = dancers[ Symbol.iterator ](), _step9; !( _iteratorNormalCompletion9 = ( _step9 = _iterator9.next() )
 				.done ); _iteratorNormalCompletion9 = true ) {
 			var dancer = _step9.value;
-			Thedancer = [ dancer.points ]
-			if ( dancerId < dancers.length ) {
-				dancerId += 1
+			Thedancer = [ dancer.points ];
+
+			if ( dancerId + 1 < dancers.length ) {
+				dancerId++
 			} else {
 				dancerId = 0
 			}
 			Thedancer.id = dancerId //Math.floor(Math.random() * 8)
-			dancerpointdraw()
+			dancers[ dancerId ].size += 0.1;
 
+			dancerPointDraw();
 			dancer.update();
 		}
 	} catch ( err ) {
@@ -615,12 +659,12 @@ var struct = {
 };
 // ---- instanciate robots ----
 var dancers = [];
-console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 150 )
+// console.log( canvas.width );
+var NoOfDancers = 2; /* Math.floor( canvas.width / 100 ); */
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 1;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
+	dancers.push( new Robot( i * 360 / 7, 0.5, ( Math.random() * 1 ), canvas.width / 2 + Math.random() * 500 /* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */ , canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
