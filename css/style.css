@@ -25,12 +25,13 @@ p {
 	color: green;
 }
 
-div {
-	position: absolute;
-	margin: 50px;
-	z-index: 100;
+/* div { */
+/* position: absolute; */
+/* position: relative; */
+/* margin: 50px; */
+/* z-index: 100; */
 
-}
+/* } */
 
 img {
 	position: absolute;
