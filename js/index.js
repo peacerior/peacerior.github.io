@@ -455,17 +455,19 @@ var fl = -50,
 	z = 0;
 
 function dancerpointdraw() {
-	ctx.strokeStyle = 'RGBA(255,255,255,0.7)'
+	ctx.strokeStyle = 'RGBA(255,255,255,0.5)'
+	ctx.fillStyle = 'RGBA(255,255,255,0.7)'
 	for ( var i = 0; i < Thedancer[ 0 ].length; i++ ) {
 		if ( ( Thedancer[ 0 ][ i ].x ) > canvas.width || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 2 || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 3 || ( Thedancer[ 0 ][ i ].x ) == Math.random() * canvas.width || ( Thedancer[ 0 ][ i ].y ) > canvas.height ) {
 			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10
 			Thedancer[ 0 ][ i ].y = Thedancer[ 0 ][ i ].y - 30
 		}
 		ctx.beginPath();
-		ctx.arc( Thedancer[ 0 ][ i ].x, Thedancer[ 0 ][ i ].y, ( Math.random() * 2 ) + 2, 0, 2 * Math.PI );
+		ctx.arc( Thedancer[ 0 ][ i ].x, Thedancer[ 0 ][ i ].y, ( Math.random() * 2 ), 0, 2 * Math.PI );
 		ctx.fill();
 
 	}
+	ctx.lineWidth = 0.5
 	ctx.beginPath()
 	ctx.moveTo( Thedancer[ 0 ][ 0 ].x, Thedancer[ 0 ][ 0 ].y );
 	ctx.lineTo( Thedancer[ 0 ][ 1 ].x, Thedancer[ 0 ][ 1 ].y );
@@ -487,10 +489,11 @@ function dancerpointdraw() {
 }
 // ---- main loop ----
 var dancerId = 0
+var increnemtStopperCounter = 0;
 
 function run() {
 	requestAnimationFrame( run );
-	ctx.fillStyle = "rgba(0,0,0,0.1)";
+	ctx.fillStyle = "rgba(0,0,0,0.01)";
 	ctx.fillRect( 0, 0, canvas.width, canvas.height );
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height )
 	// ctx.drawImage( bgr, 0, 0, bgr.width, bgr.height, 0, 0, ( canvas.width / bgr.width ) * canvas.width, ( canvas.height / bgr.height ) * canvas.height );
@@ -509,6 +512,15 @@ function run() {
 			}
 			Thedancer.id = dancerId //Math.floor(Math.random() * 8)
 			dancerpointdraw()
+			if ( dancer.size < 350 ) {
+				dancer.size++;
+			}
+
+
+			if ( increnemtStopperCounter + 1 < 10 ) {
+				console.log( dancer );
+				increnemtStopperCounter++;
+			}
 
 			dancer.update();
 		}
@@ -614,25 +626,14 @@ var struct = {
 	],
 };
 // ---- instanciate robots ----
-var dancers = []; <<
-<<
-<<
-<
-HEAD
+var dancers = [];
 // console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 100 ); ===
-===
-=
-console.log( canvas.width );
-var NoOfDancers = Math.floor( canvas.width / 150 ) >>>
-	>>>
-	>
-	parent of c689654...update
-for progress
+// var NoOfDancers = Math.floor( canvas.width / 100 );
+var NoOfDancers = Math.floor( canvas.width / 150 );
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
-	var vpos = /* Math.random() * */ 50;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, canvas.width / 2 /* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */ , canvas.height * ground - 200 + vpos, struct ) );
+	var vpos = Math.random() * 50;
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, canvas.width / 2 + Math.random() * 500 /* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */ , canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
