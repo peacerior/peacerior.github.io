@@ -675,7 +675,7 @@ var NoOfDancers = 30/*  Math.floor( canvas.width / 150 ) */;
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
 	var vpos = Math.random() * 100;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 3 ) + 1, /* canvas.width / 2 + Math.random() * 500 */( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 3 ) + 1, canvas.width / 2 + Math.random() * 50/* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */, canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
