@@ -1,5 +1,7 @@
-var _createClass = function () {
-	function defineProperties( target, props ) {
+var _createClass = function ()
+{
+	function defineProperties ( target, props )
+	{
 		for ( var i = 0; i < props.length; i++ ) {
 			var descriptor = props[ i ];
 			descriptor.enumerable = descriptor.enumerable || false;
@@ -8,20 +10,24 @@ var _createClass = function () {
 			Object.defineProperty( target, descriptor.key, descriptor );
 		}
 	}
-	return function ( Constructor, protoProps, staticProps ) {
+	return function ( Constructor, protoProps, staticProps )
+	{
 		if ( protoProps ) defineProperties( Constructor.prototype, protoProps );
 		if ( staticProps ) defineProperties( Constructor, staticProps );
 		return Constructor;
 	};
 }();
 
-function _classCallCheck( instance, Constructor ) {
+function _classCallCheck ( instance, Constructor )
+{
 	if ( !( instance instanceof Constructor ) ) {
 		throw new TypeError( "Cannot call a class as a function" );
 	}
 }
-var Robot = function () {
-	function Robot( color, light, size, x, y, struct ) {
+var Robot = function ()
+{
+	function Robot ( color, light, size, x, y, struct )
+	{
 		_classCallCheck( this, Robot );
 		this.points = [];
 		this.links = [];
@@ -37,7 +43,7 @@ var Robot = function () {
 		var _iteratorError = undefined;
 		try {
 			for ( var _iterator = struct.points[ Symbol.iterator ](), _step; !( _iteratorNormalCompletion = ( _step = _iterator.next() )
-					.done ); _iteratorNormalCompletion = true ) {
+				.done ); _iteratorNormalCompletion = true ) {
 				var p = _step.value;
 				this.points.push( new Point( id++, size * p[ 0 ] + x, size * p[ 1 ] + y, p[ 2 ] ) );
 				//function Point(id, x, y, fn, w)
@@ -62,7 +68,7 @@ var Robot = function () {
 		var _iteratorError2 = undefined;
 		try {
 			for ( var _iterator2 = struct.links[ Symbol.iterator ](), _step2; !( _iteratorNormalCompletion2 = ( _step2 = _iterator2.next() )
-					.done ); _iteratorNormalCompletion2 = true ) {
+				.done ); _iteratorNormalCompletion2 = true ) {
 				var l = _step2.value;
 				var p0 = this.points[ l[ 0 ] ];
 				var p1 = this.points[ l[ 1 ] ];
@@ -87,14 +93,16 @@ var Robot = function () {
 	}
 	_createClass( Robot, [ {
 		key: 'update',
-		value: function update() {
+		value: function update ()
+		{
 			// ---- beat ----
 			if ( ++this.frame % 20 === 0 ) this.dir = -this.dir;
 			// ---- create giants ----
 			if ( dancerDrag && this === dancerDrag && this.size < 16 && this.frame > 600 ) {
 				dancerDrag = null;
 				dancers.push( new Robot( this.color, this.light * 1.25, this.size * 2, pointer.x, pointer.y - 100 * this.size * 2, struct ) );
-				dancers.sort( function ( d0, d1 ) {
+				dancers.sort( function ( d0, d1 )
+				{
 					return d0.size - d1.size;
 				} );
 			}
@@ -104,7 +112,7 @@ var Robot = function () {
 			var _iteratorError3 = undefined;
 			try {
 				for ( var _iterator3 = this.links[ Symbol.iterator ](), _step3; !( _iteratorNormalCompletion3 = ( _step3 = _iterator3.next() )
-						.done ); _iteratorNormalCompletion3 = true ) {
+					.done ); _iteratorNormalCompletion3 = true ) {
 					var link = _step3.value;
 					var p0 = link.p0;
 					var p1 = link.p1;
@@ -144,7 +152,7 @@ var Robot = function () {
 			var _iteratorError4 = undefined;
 			try {
 				for ( var _iterator4 = this.points[ Symbol.iterator ](), _step4; !( _iteratorNormalCompletion4 = ( _step4 = _iterator4.next() )
-						.done ); _iteratorNormalCompletion4 = true ) {
+					.done ); _iteratorNormalCompletion4 = true ) {
 					var point = _step4.value;
 					// ---- drag ----
 					if ( this === dancerDrag && point === pointDrag ) {
@@ -184,7 +192,7 @@ var Robot = function () {
 			var _iteratorError5 = undefined;
 			try {
 				for ( var _iterator5 = this.links[ Symbol.iterator ](), _step5; !( _iteratorNormalCompletion5 = ( _step5 = _iterator5.next() )
-						.done ); _iteratorNormalCompletion5 = true ) {
+					.done ); _iteratorNormalCompletion5 = true ) {
 					var _link = _step5.value;
 					var p1 = _link.p1;
 					// ---- ground ----
@@ -217,13 +225,14 @@ var Robot = function () {
 		}
 	}, {
 		key: 'draw',
-		value: function draw() {
+		value: function draw ()
+		{
 			var _iteratorNormalCompletion6 = true;
 			var _didIteratorError6 = false;
 			var _iteratorError6 = undefined;
 			try {
 				for ( var _iterator6 = this.links[ Symbol.iterator ](), _step6; !( _iteratorNormalCompletion6 = ( _step6 = _iterator6.next() )
-						.done ); _iteratorNormalCompletion6 = true ) {
+					.done ); _iteratorNormalCompletion6 = true ) {
 					var link = _step6.value;
 					if ( link.size ) {
 						var dx = link.p1.x - link.p0.x;
@@ -261,10 +270,12 @@ var Robot = function () {
 	} ] );
 	return Robot;
 }();
-var Link = function Link( parent, p0, p1, dist, size, light, force ) {
+var Link = function Link ( parent, p0, p1, dist, size, light, force )
+{
 	_classCallCheck( this, Link );
 	// ---- cache strokes ----
-	function stroke( color, axis ) {
+	function stroke ( color, axis )
+	{
 		var image = document.createElement( 'canvas' );
 		image.width = dist + size;
 		image.height = size;
@@ -287,7 +298,8 @@ var Link = function Link( parent, p0, p1, dist, size, light, force ) {
 	this.image = stroke( "hsl(" + parent.color + " ,100%, " + parent.light * this.light + "%)", true );
 	this.shadow = stroke( "rgba(0,0,0,0.5)" );
 };
-var Point = function Point( id, x, y, fn, w ) {
+var Point = function Point ( id, x, y, fn, w )
+{
 	_classCallCheck( this, Point );
 	this.id = id;
 	this.x = x;
@@ -299,21 +311,25 @@ var Point = function Point( id, x, y, fn, w ) {
 	this.vx = 0;
 	this.vy = 0;
 };
-var Canvas = function () {
-	function Canvas() {
+var Canvas = function ()
+{
+	function Canvas ()
+	{
 		var _this = this;
 		_classCallCheck( this, Canvas );
 		this.elem = document.createElement( 'canvas' );
 		this.ctx = this.elem.getContext( '2d' );
 		document.body.appendChild( this.elem );
 		this.resize();
-		window.addEventListener( 'resize', function () {
+		window.addEventListener( 'resize', function ()
+		{
 			return _this.resize();
 		}, false );
 	}
 	_createClass( Canvas, [ {
 		key: 'resize',
-		value: function resize() {
+		value: function resize ()
+		{
 			this.width = this.elem.width = this.elem.offsetWidth;
 			this.height = this.elem.height = this.elem.offsetHeight;
 			ground = this.height > 500 ? 0.85 : 1.0;
@@ -321,49 +337,58 @@ var Canvas = function () {
 	} ] );
 	return Canvas;
 }();
-var Pointer = function () {
-	function Pointer( canvas ) {
+var Pointer = function ()
+{
+	function Pointer ( canvas )
+	{
 		var _this2 = this;
 		_classCallCheck( this, Pointer );
 		this.x = 0;
 		this.y = 0;
 		this.canvas = canvas;
-		window.addEventListener( 'mousemove', function ( e ) {
+		window.addEventListener( 'mousemove', function ( e )
+		{
 			return _this2.move( e );
 		}, false );
-		canvas.elem.addEventListener( 'touchmove', function ( e ) {
+		canvas.elem.addEventListener( 'touchmove', function ( e )
+		{
 			return _this2.move( e );
 		}, false );
-		window.addEventListener( 'mousedown', function ( e ) {
+		window.addEventListener( 'mousedown', function ( e )
+		{
 			return _this2.down( e );
 		}, false );
-		window.addEventListener( 'touchstart', function ( e ) {
+		window.addEventListener( 'touchstart', function ( e )
+		{
 			return _this2.down( e );
 		}, false );
-		window.addEventListener( 'mouseup', function ( e ) {
+		window.addEventListener( 'mouseup', function ( e )
+		{
 			return _this2.up( e );
 		}, false );
-		window.addEventListener( 'touchend', function ( e ) {
+		window.addEventListener( 'touchend', function ( e )
+		{
 			return _this2.up( e );
 		}, false );
 	}
 	_createClass( Pointer, [ {
 		key: 'down',
-		value: function down( e ) {
+		value: function down ( e )
+		{
 			this.move( e );
 			var _iteratorNormalCompletion7 = true;
 			var _didIteratorError7 = false;
 			var _iteratorError7 = undefined;
 			try {
 				for ( var _iterator7 = dancers[ Symbol.iterator ](), _step7; !( _iteratorNormalCompletion7 = ( _step7 = _iterator7.next() )
-						.done ); _iteratorNormalCompletion7 = true ) {
+					.done ); _iteratorNormalCompletion7 = true ) {
 					var dancer = _step7.value;
 					var _iteratorNormalCompletion8 = true;
 					var _didIteratorError8 = false;
 					var _iteratorError8 = undefined;
 					try {
 						for ( var _iterator8 = dancer.points[ Symbol.iterator ](), _step8; !( _iteratorNormalCompletion8 = ( _step8 = _iterator8.next() )
-								.done ); _iteratorNormalCompletion8 = true ) {
+							.done ); _iteratorNormalCompletion8 = true ) {
 							var point = _step8.value;
 							var dx = pointer.x - point.x;
 							var dy = pointer.y - point.y;
@@ -406,12 +431,14 @@ var Pointer = function () {
 		}
 	}, {
 		key: 'up',
-		value: function up( e ) {
+		value: function up ( e )
+		{
 			dancerDrag = null;
 		}
 	}, {
 		key: 'move',
-		value: function move( e ) {
+		value: function move ( e )
+		{
 			var touchMode = e.targetTouches,
 				pointer = void 0;
 			if ( touchMode ) {
@@ -454,9 +481,10 @@ var psize = ( Math.random() * 50 ) + 100
 var fl = -50,
 	z = 0;
 
-function dancerpointdraw() {
+function dancerpointdraw ()
+{
 	ctx.strokeStyle = 'RGBA(255,255,255,0.5)'
-	ctx.fillStyle = 'RGBA(255,255,255,0.7)'
+	ctx.fillStyle = 'RGBA(255,255,255,1)'
 	for ( var i = 0; i < Thedancer[ 0 ].length; i++ ) {
 		if ( ( Thedancer[ 0 ][ i ].x ) > canvas.width || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 2 || ( Thedancer[ 0 ][ i ].x ) == canvas.width / 3 || ( Thedancer[ 0 ][ i ].x ) == Math.random() * canvas.width || ( Thedancer[ 0 ][ i ].y ) > canvas.height ) {
 			Thedancer[ 0 ][ i ].x = Thedancer[ 0 ][ i ].x - 10
@@ -488,10 +516,12 @@ function dancerpointdraw() {
 	ctx.stroke();
 }
 // ---- main loop ----
-var dancerId = 0
+var dancerId = 0;
+var dancerGrowth = true;
 var increnemtStopperCounter = 0;
 
-function run() {
+function run ()
+{
 	requestAnimationFrame( run );
 	ctx.fillStyle = "rgba(0,0,0,0.01)";
 	ctx.fillRect( 0, 0, canvas.width, canvas.height );
@@ -502,7 +532,7 @@ function run() {
 	var _iteratorError9 = undefined;
 	try {
 		for ( var _iterator9 = dancers[ Symbol.iterator ](), _step9; !( _iteratorNormalCompletion9 = ( _step9 = _iterator9.next() )
-				.done ); _iteratorNormalCompletion9 = true ) {
+			.done ); _iteratorNormalCompletion9 = true ) {
 			var dancer = _step9.value;
 			Thedancer = [ dancer.points ]
 			if ( dancerId < dancers.length ) {
@@ -512,10 +542,13 @@ function run() {
 			}
 			Thedancer.id = dancerId //Math.floor(Math.random() * 8)
 			dancerpointdraw()
-			if ( dancer.size < 350 ) {
+			if ( dancer.size < 350 && dancer.size > 0 ) {
+				dancerGrowth = true;
 				dancer.size++;
+			} else {
+				dancerGrowth = false;
+				dancer.size--;
 			}
-
 
 			if ( increnemtStopperCounter + 1 < 10 ) {
 				console.log( dancer );
@@ -558,18 +591,22 @@ function run() {
 // ---- robot structure ----
 var struct = {
 	points: [
-		[ 0, -4, function ( s, d ) {
+		[ 0, -4, function ( s, d )
+		{
 			this.y -= 0.06 * s;
 		} ],
-		[ 0, -16, function ( s, d ) {
+		[ 0, -16, function ( s, d )
+		{
 			this.y -= 0.02 * s * d;
 		} ],
-		[ 0, 12, function ( s, d ) {
+		[ 0, 12, function ( s, d )
+		{
 			this.y += 0.02 * s * d;
 		} ],
 		[ -12, 0 ],
 		[ 12, 0 ],
-		[ -3, 34, function ( s, d ) {
+		[ -3, 34, function ( s, d )
+		{
 			if ( d > 0 ) {
 				this.x += 0.01 * s;
 				this.y -= 0.015 * s;
@@ -577,7 +614,8 @@ var struct = {
 				this.y += 0.02 * s;
 			}
 		} ],
-		[ 3, 34, function ( s, d ) {
+		[ 3, 34, function ( s, d )
+		{
 			if ( d > 0 ) {
 				this.y += 0.02 * s;
 			} else {
@@ -585,15 +623,18 @@ var struct = {
 				this.y -= 0.015 * s;
 			}
 		} ],
-		[ -28, 0, function ( s, d ) {
+		[ -28, 0, function ( s, d )
+		{
 			this.x += this.vx * 0.035;
 			this.y -= 0.001 * s;
 		} ],
-		[ 28, 0, function ( s, d ) {
+		[ 28, 0, function ( s, d )
+		{
 			this.x += this.vx * 0.035;
 			this.y -= 0.001 * s;
 		} ],
-		[ -3, 64, function ( s, d ) {
+		[ -3, 64, function ( s, d )
+		{
 			this.y += 0.02 * s;
 			if ( d > 0 ) {
 				this.y -= 0.01 * s;
@@ -601,7 +642,8 @@ var struct = {
 				this.y += 0.05 * s;
 			}
 		} ],
-		[ 3, 64, function ( s, d ) {
+		[ 3, 64, function ( s, d )
+		{
 			this.y += 0.02 * s;
 			if ( d > 0 ) {
 				this.y += 0.05 * s;
@@ -629,11 +671,11 @@ var struct = {
 var dancers = [];
 // console.log( canvas.width );
 // var NoOfDancers = Math.floor( canvas.width / 100 );
-var NoOfDancers = Math.floor( canvas.width / 150 );
+var NoOfDancers = 30/*  Math.floor( canvas.width / 150 ) */;
 for ( var i = 0; i < NoOfDancers; i++ ) {
 	//Robot(color, light, size, x, y, struct)
-	var vpos = Math.random() * 50;
-	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 5 ) + 1, canvas.width / 2 + Math.random() * 500 /* ( i + 1 ) * canvas.width / ( NoOfDancers + 1 ) */ , canvas.height * ground - 200 + vpos, struct ) );
+	var vpos = Math.random() * 100;
+	dancers.push( new Robot( i * 360 / 7, 0.1, ( Math.random() * 3 ) + 1, /* canvas.width / 2 + Math.random() * 500 */( i + 1 ) * canvas.width / ( NoOfDancers + 1 ), canvas.height * ground - 200 + vpos, struct ) );
 }
 
 run();
