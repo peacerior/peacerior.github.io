@@ -1,26 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Imaginary Tools</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Imaginary Tools</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
 
-<body touch-action="none">
-
-    <div style="position: fixed; top: 50px;transform: rotate(-2deg); z-index: 100;">
-        <!-- ///<a href="img/FarukSabanovic_pf_003.pdf" style="background-color:white;">
+    <body touch-action="none">
+        <div class="scroller">
+            <div style="height: 1400%; width: 1px; "></div>
+        </div>
+        . <div style="position: fixed; top: 50px;transform: rotate(-2deg); z-index: 100;">
+            <!-- ///<a href="img/FarukSabanovic_pf_003.pdf" style="background-color:white;">
             Portfolio.PDF</a><br><br> -->
 
-        <a style="background-color:white;"> faruk@imaginary.tools<br> sarajevo<br>LosAngeles</a>
-    </div>
-    <div style="position: fixed; bottom: 50px; transform: rotate(2deg); z-index: 100;">
-        ///<a href="https://www.instagram.com/the.scribblings/" style="background-color:white;">
-            scribblings</a><br><br>
+            <a style="background-color:white;"> faruk@imaginary.tools<br> sarajevo<br>LosAngeles</a>
+        </div>
+        <div style="position: fixed; bottom: 50px; transform: rotate(2deg); z-index: 100;">
+            ///<a href="https://www.instagram.com/faru.saba/" style="background-color:white;">
+                scribblings</a><br><br>
 
-    </div>
-    <script src="js/index.js"></script>
-</body>
+        </div>
+        <script src="js/index.js"></script>
+        <script>
+            var scrollerdiv = document.getElementsByClassName('scroller')
+            scrollerdiv[0].addEventListener('scroll', e => {
+                var groundOffset = scrollerdiv[0].scrollTop;
+                ground = 1 - (groundOffset * 0.0001);
+                console.log(groundOffset, ground)
+                // console.log(document.scrollX)
+            })
+            // window.onscroll = function () { myFunction() };
+
+            // function myFunction() {
+            //     console.log('document.body.scrollTop');
+            //     // if (document.body.scrollTop > 350 || document.documentElement.scrollTop > 350) {
+            //     // 	document.getElementById("myImg").className = "slideUp";
+            //     // }
+            // }
+        </script>
+    </body>
 
 </html>

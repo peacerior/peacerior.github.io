@@ -1,5 +1,4 @@
 html {
-	overflow: hidden;
 	font-family: "Courier New", Courier;
 
 }
@@ -11,27 +10,35 @@ body {
 	width: 100%;
 	height: 100%;
 	background: #000;
+	/* overflow-y:scroll; */
+	overflow: hidden;
 
 }
 
 canvas {
+	/* overflow: hidden; */
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	background: #0000;
-}
+
+	}
 
 p {
-	color: green;
+		color: green;
+	}
+
+.scroller {
+	width: 100%		;
+	height: 100%;
+	right:-30px;
+	position: fixed;
+	margin: 0px;
+	z-index: 100;
+	overflow-y:scroll;
+	/* overflow-y:hidden; */
+
 }
-
-/* div { */
-/* position: absolute; */
-/* position: relative; */
-/* margin: 50px; */
-/* z-index: 100; */
-
-/* } */
 
 img {
 	position: absolute;
