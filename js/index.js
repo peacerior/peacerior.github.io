@@ -672,7 +672,7 @@ for (var i = 0; i < noOfDancers; i++) {
 	//Robot(color, light, size, x, y, struct)
 
 	var vpos = Math.random() * 200;
-	dancers.push(new Robot(i * 360 / 7, 0.1, (Math.random() * /* canvas.width / */ 10) /* + 1 */, /* canvas.width / 2 + Math.random() * 50 */(i + 1) * canvas.width / (noOfDancers + 1), /* canvas.height * ground - 200 +  */vpos, struct));
+	dancers.push(new Robot(i * 360 / 7, 0.1, (Math.random() * /* canvas.width / */ 6) /* + 1 */, /* canvas.width / 2 + Math.random() * 50 */(i + 1) * canvas.width / (noOfDancers + 1), /* canvas.height * ground - 200 +  */vpos, struct));
 	console.log(struct.links[0]);
 
 }
